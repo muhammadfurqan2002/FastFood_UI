@@ -1,21 +1,50 @@
 import 'dart:ui';
 
+import 'package:fastfood/blocs/get_cart_item_Bloc/get_cart_item_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cart.dart';
+import 'homepageitems.dart';
 
 
 
 
 class FastFoodHome extends StatelessWidget {
-  const FastFoodHome({super.key});
+   FastFoodHome({super.key});
+
+   List<Map<String, dynamic>> items = [
+     {
+       "title": "Margherita",
+       "price": "9",
+       "description": "Classic Italian with tomato sauce, mozzarella, and basil",
+       "image":"images/FastFood/value_meal1.png"
+     },
+     {
+       "title": "Pepperoni",
+       "price": "10",
+       "description": "A timeless favorite featuring pepperoni slices and melted cheese"
+      ,"image":"images/FastFood/kfc_hero.png"
+     },
+     {
+       "title": "Vegetarian",
+       "price": "11",
+       "description": "Loaded with fresh vegetables and cheese for a flavorful meat-free option"
+      ,"image":"images/FastFood/burger3.png"
+     },
+     // Add more items here
+   ];
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
     final h=MediaQuery.of(context).size.height;
     final w=MediaQuery.of(context).size.width;
     return Scaffold(
@@ -63,7 +92,11 @@ class FastFoodHome extends StatelessWidget {
                            )
                          ],
                       ),
-                      const Icon(Icons.shopping_bag_outlined,size: 30,)
+                      InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>CART()));
+                          },
+                          child: const Icon(Icons.shopping_bag_outlined,size: 30,))
                     ],
                   ),
               SizedBox(height: h*.02,),
@@ -183,16 +216,16 @@ class FastFoodHome extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            homePageItems(title:"Fried Chicken", path:"images/FastFood/snacks1.png", price:"\$20",context: context),
-                            homePageItems(title:"Chicken Popcorn", path:"images/FastFood/shake_shack_hero.png", price:"\$30",context: context)
+                            homePageItems(title:items[0]['title'], path:items[0]['image'], price:items[0]['price'],),
+                            homePageItems(title:items[1]['title'], path:items[1]['image'], price:items[1]['price'],)
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            homePageItems(title:"Breakfast Deal", path:"images/FastFood/breakfast1.png", price:"\$20",context: context),
-                            homePageItems(title:"Chicken Popcorn", path:"images/FastFood/burger3.png", price:"\$30",context: context)
+
+                            homePageItems(title:items[2]['title'], path:items[2]['image'], price:items[2]['price']),
                           ],
                         ),
                       ],
@@ -207,75 +240,7 @@ class FastFoodHome extends StatelessWidget {
     );
 
   }
-  homePageItems({required String title,required String path,required String price,required context}){
-    final w=MediaQuery.of(context).size.width;
-    final h=MediaQuery.of(context).size.height;
-    return  Padding(
-      padding:const EdgeInsets.only(top: 10,left: 10,right: 10),
-      child: GestureDetector(
-        onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>CART()));
-        },
-        child: SizedBox(
-          // color: Colors.black,
-          height: h*0.30,
-          width: w*.41,
-          child: Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              Positioned(
-                top:50,
-                child: Container(
-                  height:h*.22,
-                  width:w*.4,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(30)
-                  ),
-                ),
-              ),
-               Positioned(
-                top: 110,
-                child: SizedBox(
-                  child:  Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    // crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(title,style:const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                      SizedBox(height: h*.003,),
-                      const Text("Chicken Patty, Cheese,\nTomato,Lecttuce",textAlign: TextAlign.center,style:TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54
-                      )),
-                      SizedBox(height: h*.015,),
-                      Text(price,style:const TextStyle(
-                        fontSize: 16,
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ))
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                  top: 10,
-                  child: Container(
-                    // color: Colors.red,
-                      height: h*.12,
-                      // width: w*.35,
-                      child: Image.asset(path,fit: BoxFit.cover,))),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }
-
 
 
 
