@@ -63,7 +63,7 @@ class _CARTState extends State<CART> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18
                             ),),
-                            Text("\$7000",style: TextStyle(
+                            Text("\$100",style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17,color: Colors.red
                             ),),
@@ -171,7 +171,7 @@ class _CartWidgetState extends State<CartWidget> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(widget.cart.productPrice.toString(),style: TextStyle(
+                                  Text('\$${widget.cart.productPrice.toString()}',style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color:Colors.red.shade500

@@ -72,8 +72,10 @@ class _homePageItemsState extends State<homePageItems> {
                         color: Colors.black54
                     )),
                     // SizedBox(height: h*.015,),
+                    SizedBox(height: 7,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Ink(
                           child: GestureDetector(
@@ -95,8 +97,8 @@ class _homePageItemsState extends State<homePageItems> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 60,),
-                        Text(widget.price,style:const TextStyle(
+                        SizedBox(width: h*0.08,),
+                        Text('\$${widget.price}',style:const TextStyle(
                           fontSize: 16,
                           color: Colors.red,
                           fontWeight: FontWeight.bold,

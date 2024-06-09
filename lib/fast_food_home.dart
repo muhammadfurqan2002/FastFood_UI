@@ -36,6 +36,12 @@ class FastFoodHome extends StatelessWidget {
        "description": "Loaded with fresh vegetables and cheese for a flavorful meat-free option"
       ,"image":"images/FastFood/burger3.png"
      },
+     {
+       "title": "Ice Tea",
+       "price": "11",
+       "description": "Loaded with fresh vegetables and cheese for a flavorful meat-free option"
+      ,"image":"images/FastFood/ice_tea.png"
+     },
      // Add more items here
    ];
 
@@ -226,6 +232,7 @@ class FastFoodHome extends StatelessWidget {
                           children: [
 
                             homePageItems(title:items[2]['title'], path:items[2]['image'], price:items[2]['price']),
+                            homePageItems(title:items[3]['title'], path:items[3]['image'], price:items[3]['price']),
                           ],
                         ),
                       ],
